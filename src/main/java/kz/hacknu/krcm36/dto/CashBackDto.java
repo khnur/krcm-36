@@ -1,7 +1,6 @@
 package kz.hacknu.krcm36.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import kz.hacknu.krcm36.util.Category;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,7 +15,6 @@ public class CashBackDto {
     @Builder
     public static class Request {
         private Integer id;
-        private Category category;
         private Float percent;
         private String condition;
         @JsonProperty("expiry_date")
@@ -34,7 +32,6 @@ public class CashBackDto {
     @Builder
     public static class Response {
         private Integer id;
-        private Category category;
         private Float percent;
         private String condition;
         @JsonProperty("expiry_date")

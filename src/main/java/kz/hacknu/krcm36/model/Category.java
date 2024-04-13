@@ -1,17 +1,22 @@
-package kz.hacknu.krcm36.dto;
+package kz.hacknu.krcm36.model;
 
-import kz.hacknu.krcm36.util.ServiceCategory;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Entity
+@Table(name = "categories")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CompanyDto {
+public class Category {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Column(nullable = false)
     private String name;
-    private ServiceCategory category;
 }

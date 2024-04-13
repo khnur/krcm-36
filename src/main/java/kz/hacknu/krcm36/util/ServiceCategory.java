@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public enum Category {
+public enum ServiceCategory {
     SUPERMARKETS("Супермаркеты"),
     INSURANCE("Страхование"),
     EDUCATION("Образование"),

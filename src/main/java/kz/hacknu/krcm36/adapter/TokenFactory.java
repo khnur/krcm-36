@@ -1,6 +1,7 @@
 package kz.hacknu.krcm36.adapter;
 
 import kz.hacknu.krcm36.domain.BearerToken;
+import kz.hacknu.krcm36.domain.CompanyDetail;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -15,9 +16,10 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class TokenFactory {
-    public String createToken() {
-        RestTemplate restTemplate = new RestTemplate();
+    private final RestTemplate tokenRestTemplate = new RestTemplate();
+    private final RestTemplate scrapeRestTemplate = new RestTemplate();
 
+    public String createToken() {
         MultiValueMap<String, String> formData = new LinkedMultiValueMap<>();
         formData.add("grant_type", "client_credentials");
         formData.add("scope", "sms_send");
@@ -29,10 +31,15 @@ public class TokenFactory {
 
         HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(formData, headers);
 
-        BearerToken bearerToken = restTemplate.postForObject("https://oauth.homebank.kz/oauth2/token", requestEntity, BearerToken.class);
+        BearerToken bearerToken = tokenRestTemplate.postForObject("https://oauth.homebank.kz/oauth2/token", requestEntity, BearerToken.class);
 
         return Optional.ofNullable(bearerToken)
                 .map(BearerToken::getAccessToken)
                 .orElseThrow();
+    }
+
+    public CompanyDetail getCompanyDetail(String token) {
+
+        return null;
     }
 }

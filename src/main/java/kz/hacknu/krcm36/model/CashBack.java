@@ -1,7 +1,6 @@
 package kz.hacknu.krcm36.model;
 
 import jakarta.persistence.*;
-import kz.hacknu.krcm36.util.Category;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -28,10 +27,6 @@ public class CashBack {
             nullable = false
     )
     private BankCard bankCard;
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private Category category;
 
     @Column(nullable = false)
     private Float percent;

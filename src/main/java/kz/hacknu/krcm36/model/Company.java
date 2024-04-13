@@ -1,7 +1,6 @@
 package kz.hacknu.krcm36.model;
 
 import jakarta.persistence.*;
-import kz.hacknu.krcm36.util.Category;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,7 +20,12 @@ public class Company {
     @Column(nullable = false)
     private String name;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @ManyToOne
+    @JoinColumn(
+            name = "category_id",
+            referencedColumnName = "id",
+            foreignKey = @ForeignKey(name = "category_company_fk"),
+            nullable = false
+    )
     private Category category;
 }

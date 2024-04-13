@@ -3,7 +3,6 @@ package kz.hacknu.krcm36;
 import kz.hacknu.krcm36.model.*;
 import kz.hacknu.krcm36.repository.*;
 import kz.hacknu.krcm36.util.CardType;
-import kz.hacknu.krcm36.util.Category;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -24,21 +23,51 @@ public class Data {
             BankCardRepository cardRepository,
             CashBackRepository cashBackRepository,
             UserRepository userRepository,
-            CompanyRepository companyRepository
+            CompanyRepository companyRepository,
+            CategoryRepository categoryRepository
     ) {
         return args -> {
+            categoryRepository.saveAll(List.of(
+                    Category.builder().name("Супермаркеты")
+                            .build(),
+                    Category.builder().name("Страхование")
+                            .build(),
+                    Category.builder().name("Образование")
+                            .build(),
+                    Category.builder().name("Сельское хозяйство")
+                            .build(),
+                    Category.builder().name("Билеты")
+                            .build(),
+                    Category.builder().name("Кафе и рестораны")
+                            .build(),
+                    Category.builder().name("Доставка еды")
+                            .build(),
+                    Category.builder().name("Такси")
+                            .build(),
+                    Category.builder().name("детей")
+                            .build(),
+                    Category.builder().name("музыка")
+                            .build(),
+                    Category.builder().name("сервисы")
+                            .build(),
+                    Category.builder().name("Питомцы")
+                            .build(),
+                    Category.builder().name("страхованию")
+                            .build()
+            ));
+
             companyRepository.saveAll(List.of(
                     Company.builder()
                             .name("ZARA")
-                            .category(Category.CLOTHES_AND_SHOES)
+                            .category(categoryRepository.getReferenceById(1))
                             .build(),
                     Company.builder()
                             .name("Small")
-                            .category(Category.SUPERMARKETS)
+                            .category(categoryRepository.getReferenceById(2))
                             .build(),
                     Company.builder()
                             .name("Uvu")
-                            .category(Category.TAXI)
+                            .category(categoryRepository.getReferenceById(4))
                             .build()
             ));
             userRepository.saveAll(List.of(
@@ -89,7 +118,6 @@ public class Data {
             cashBackRepository.saveAll(List.of(
                     CashBack.builder()
                             .bankCard(cardRepository.getReferenceById(1))
-                            .category(Category.SUPERMARKETS)
                             .percent(0.15F)
                             .condition("Min. 10$")
                             .expiryDate(LocalDate.now())
@@ -98,7 +126,6 @@ public class Data {
                             .build(),
                     CashBack.builder()
                             .bankCard(cardRepository.getReferenceById(1))
-                            .category(Category.SUPERMARKETS)
                             .percent(0.15F)
                             .condition("Min. 10$")
                             .expiryDate(LocalDate.now())
@@ -107,7 +134,6 @@ public class Data {
                             .build(),
                     CashBack.builder()
                             .bankCard(cardRepository.getReferenceById(2))
-                            .category(Category.FOOD_DELIVERY)
                             .percent(0.1F)
                             .condition("Min. 20$")
                             .expiryDate(LocalDate.now().plusMonths(3))
@@ -116,7 +142,6 @@ public class Data {
                             .build(),
                     CashBack.builder()
                             .bankCard(cardRepository.getReferenceById(1))
-                            .category(Category.CINEMA_AND_MUSIC)
                             .percent(0.1F)
                             .condition("Min. 15$")
                             .expiryDate(LocalDate.now().plusYears(1))
@@ -125,7 +150,6 @@ public class Data {
                             .build(),
                     CashBack.builder()
                             .bankCard(cardRepository.getReferenceById(1))
-                            .category(Category.GAMING_SERVICES)
                             .percent(0.05F)
                             .condition("Min. 50$")
                             .expiryDate(LocalDate.now().plusMonths(6))
@@ -134,7 +158,6 @@ public class Data {
                             .build(),
                     CashBack.builder()
                             .bankCard(cardRepository.getReferenceById(2))
-                            .category(Category.TRAVEL)
                             .percent(0.08F)
                             .condition("Min. 100$")
                             .expiryDate(LocalDate.now().plusYears(1)) // Expires in 1 year
@@ -143,7 +166,6 @@ public class Data {
                             .build(),
                     CashBack.builder()
                             .bankCard(cardRepository.getReferenceById(1))
-                            .category(Category.MEDICAL_SERVICES)
                             .percent(0.1F)
                             .condition("Min. 30$")
                             .expiryDate(LocalDate.now().plusMonths(3)) // Expires in 3 months
@@ -152,7 +174,6 @@ public class Data {
                             .build(),
                     CashBack.builder()
                             .bankCard(cardRepository.getReferenceById(2))
-                            .category(Category.BEAUTY_SALONS)
                             .percent(0.12F)
                             .condition("Min. 40$")
                             .expiryDate(LocalDate.now().plusMonths(4)) // Expires in 4 months
@@ -161,7 +182,6 @@ public class Data {
                             .build(),
                     CashBack.builder()
                             .bankCard(cardRepository.getReferenceById(1))
-                            .category(Category.ELECTRONICS)
                             .percent(0.07F)
                             .condition("Min. 200$")
                             .expiryDate(LocalDate.now().plusYears(2)) // Expires in 2 years
@@ -170,7 +190,6 @@ public class Data {
                             .build(),
                     CashBack.builder()
                             .bankCard(cardRepository.getReferenceById(2))
-                            .category(Category.TRAVEL)
                             .percent(0.1F)
                             .condition("Min. 150$")
                             .expiryDate(LocalDate.now().plusMonths(6)) // Expires in 6 months
@@ -179,7 +198,6 @@ public class Data {
                             .build(),
                     CashBack.builder()
                             .bankCard(cardRepository.getReferenceById(1))
-                            .category(Category.PETS)
                             .percent(0.15F)
                             .condition("Min. 20$")
                             .expiryDate(LocalDate.now().plusMonths(3)) // Expires in 3 months
@@ -188,7 +206,6 @@ public class Data {
                             .build(),
                     CashBack.builder()
                             .bankCard(cardRepository.getReferenceById(2))
-                            .category(Category.COSMETICS)
                             .percent(0.1F)
                             .condition("Min. 25$")
                             .expiryDate(LocalDate.now().plusMonths(6)) // Expires in 6 months
@@ -197,7 +214,6 @@ public class Data {
                             .build(),
                     CashBack.builder()
                             .bankCard(cardRepository.getReferenceById(1))
-                            .category(Category.FURNITURE)
                             .percent(0.12F)
                             .condition("Min. 100$")
                             .expiryDate(LocalDate.now().plusYears(1)) // Expires in 1 year
@@ -206,7 +222,6 @@ public class Data {
                             .build(),
                     CashBack.builder()
                             .bankCard(cardRepository.getReferenceById(2))
-                            .category(Category.FITNESS_AND_SPA)
                             .percent(0.1F)
                             .condition("Min. 50$")
                             .expiryDate(LocalDate.now().plusMonths(3)) // Expires in 3 months

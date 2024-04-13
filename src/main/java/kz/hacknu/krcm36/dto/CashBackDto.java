@@ -1,6 +1,7 @@
 package kz.hacknu.krcm36.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import kz.hacknu.krcm36.model.BankCard;
 import kz.hacknu.krcm36.util.Category;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,7 +16,7 @@ import java.time.LocalDateTime;
 @Builder
 public class CashBackDto {
     private Integer id;
-    private BankDto bank;
+    private BankCardDto bankCard;
     private Category category;
     private Float percent;
     private String condition;

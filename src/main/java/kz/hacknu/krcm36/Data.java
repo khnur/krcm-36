@@ -77,12 +77,19 @@ public class Data {
                             .cardNumber("321")
                             .expiryDate(LocalDate.now())
                             .user(userRepository.getReferenceById(1))
+                            .build(),
+                    BankCard.builder()
+                            .bank(bankRepository.getReferenceById(2))
+                            .type(CardType.MASTERCARD)
+                            .cardNumber("444")
+                            .expiryDate(LocalDate.now())
+                            .user(userRepository.getReferenceById(2))
                             .build()
             ));
 
             cashBackRepository.saveAll(List.of(
                     CashBack.builder()
-                            .bank(bankRepository.getReferenceById(1))
+                            .bankCard(cardRepository.getReferenceById(1))
                             .category(Category.SUPERMARKETS)
                             .percent(0.15F)
                             .condition("Min. 10$")
@@ -91,7 +98,7 @@ public class Data {
                             .company(companyRepository.getReferenceById(1))
                             .build(),
                     CashBack.builder()
-                            .bank(bankRepository.getReferenceById(1))
+                            .bankCard(cardRepository.getReferenceById(1))
                             .category(Category.SUPERMARKETS)
                             .percent(0.15F)
                             .condition("Min. 10$")
@@ -100,7 +107,7 @@ public class Data {
                             .company(companyRepository.getReferenceById(1))
                             .build(),
                     CashBack.builder()
-                            .bank(bankRepository.getReferenceById(2))
+                            .bankCard(cardRepository.getReferenceById(2))
                             .category(Category.FOOD_DELIVERY)
                             .percent(0.1F)
                             .condition("Min. 20$")
@@ -109,7 +116,7 @@ public class Data {
                             .company(companyRepository.getReferenceById(2))
                             .build(),
                     CashBack.builder()
-                            .bank(bankRepository.getReferenceById(1))
+                            .bankCard(cardRepository.getReferenceById(1))
                             .category(Category.CINEMA_AND_MUSIC)
                             .percent(0.1F)
                             .condition("Min. 15$")
@@ -118,94 +125,94 @@ public class Data {
                             .company(companyRepository.getReferenceById(3))
                             .build(),
                     CashBack.builder()
-                            .bank(bankRepository.getReferenceById(1))
+                            .bankCard(cardRepository.getReferenceById(1))
                             .category(Category.GAMING_SERVICES)
                             .percent(0.05F)
                             .condition("Min. 50$")
                             .expiryDate(LocalDate.now().plusMonths(6))
                             .restriction("Valid for in-game purchases only")
-                            .company(companyRepository.getReferenceById(4))
+                            .company(companyRepository.getReferenceById(3))
                             .build(),
                     CashBack.builder()
-                            .bank(bankRepository.getReferenceById(2))
+                            .bankCard(cardRepository.getReferenceById(2))
                             .category(Category.TRAVEL)
                             .percent(0.08F)
                             .condition("Min. 100$")
                             .expiryDate(LocalDate.now().plusYears(1)) // Expires in 1 year
                             .restriction("Applicable for flights and hotel bookings")
-                            .company(companyRepository.getReferenceById(5)) // Assuming ID 5 represents another company
+                            .company(companyRepository.getReferenceById(3)) // Assuming ID 5 represents another company
                             .build(),
                     CashBack.builder()
-                            .bank(bankRepository.getReferenceById(1))
+                            .bankCard(cardRepository.getReferenceById(1))
                             .category(Category.MEDICAL_SERVICES)
                             .percent(0.1F)
                             .condition("Min. 30$")
                             .expiryDate(LocalDate.now().plusMonths(3)) // Expires in 3 months
                             .restriction("Valid for medical consultations only")
-                            .company(companyRepository.getReferenceById(6)) // Assuming ID 6 represents another company
+                            .company(companyRepository.getReferenceById(3)) // Assuming ID 6 represents another company
                             .build(),
                     CashBack.builder()
-                            .bank(bankRepository.getReferenceById(2))
+                            .bankCard(cardRepository.getReferenceById(2))
                             .category(Category.BEAUTY_SALONS)
                             .percent(0.12F)
                             .condition("Min. 40$")
                             .expiryDate(LocalDate.now().plusMonths(4)) // Expires in 4 months
                             .restriction("Valid for selected salon services")
-                            .company(companyRepository.getReferenceById(7)) // Assuming ID 7 represents another company
+                            .company(companyRepository.getReferenceById(3)) // Assuming ID 7 represents another company
                             .build(),
                     CashBack.builder()
-                            .bank(bankRepository.getReferenceById(1))
+                            .bankCard(cardRepository.getReferenceById(1))
                             .category(Category.ELECTRONICS)
                             .percent(0.07F)
                             .condition("Min. 200$")
                             .expiryDate(LocalDate.now().plusYears(2)) // Expires in 2 years
                             .restriction("Applicable on electronics purchases")
-                            .company(companyRepository.getReferenceById(8)) // Assuming ID 8 represents another company
+                            .company(companyRepository.getReferenceById(3)) // Assuming ID 8 represents another company
                             .build(),
                     CashBack.builder()
-                            .bank(bankRepository.getReferenceById(2))
+                            .bankCard(cardRepository.getReferenceById(2))
                             .category(Category.TRAVEL)
                             .percent(0.1F)
                             .condition("Min. 150$")
                             .expiryDate(LocalDate.now().plusMonths(6)) // Expires in 6 months
                             .restriction("Valid for adventure tours")
-                            .company(companyRepository.getReferenceById(9)) // Assuming ID 9 represents another company
+                            .company(companyRepository.getReferenceById(3)) // Assuming ID 9 represents another company
                             .build(),
                     CashBack.builder()
-                            .bank(bankRepository.getReferenceById(1))
+                            .bankCard(cardRepository.getReferenceById(1))
                             .category(Category.PETS)
                             .percent(0.15F)
                             .condition("Min. 20$")
                             .expiryDate(LocalDate.now().plusMonths(3)) // Expires in 3 months
                             .restriction("Valid for pet supplies purchases")
-                            .company(companyRepository.getReferenceById(10)) // Assuming ID 10 represents another company
+                            .company(companyRepository.getReferenceById(3)) // Assuming ID 10 represents another company
                             .build(),
                     CashBack.builder()
-                            .bank(bankRepository.getReferenceById(2))
+                            .bankCard(cardRepository.getReferenceById(2))
                             .category(Category.COSMETICS)
                             .percent(0.1F)
                             .condition("Min. 25$")
                             .expiryDate(LocalDate.now().plusMonths(6)) // Expires in 6 months
                             .restriction("Valid for cosmetics purchases")
-                            .company(companyRepository.getReferenceById(11)) // Assuming ID 11 represents another company
+                            .company(companyRepository.getReferenceById(3)) // Assuming ID 11 represents another company
                             .build(),
                     CashBack.builder()
-                            .bank(bankRepository.getReferenceById(1))
+                            .bankCard(cardRepository.getReferenceById(1))
                             .category(Category.FURNITURE)
                             .percent(0.12F)
                             .condition("Min. 100$")
                             .expiryDate(LocalDate.now().plusYears(1)) // Expires in 1 year
                             .restriction("Applicable on furniture purchases")
-                            .company(companyRepository.getReferenceById(12)) // Assuming ID 12 represents another company
+                            .company(companyRepository.getReferenceById(3)) // Assuming ID 12 represents another company
                             .build(),
                     CashBack.builder()
-                            .bank(bankRepository.getReferenceById(2))
+                            .bankCard(cardRepository.getReferenceById(2))
                             .category(Category.FITNESS_AND_SPA)
                             .percent(0.1F)
                             .condition("Min. 50$")
                             .expiryDate(LocalDate.now().plusMonths(3)) // Expires in 3 months
                             .restriction("Valid for fitness memberships and spa services")
-                            .company(companyRepository.getReferenceById(13)) // Assuming ID 13 represents another company
+                            .company(companyRepository.getReferenceById(3)) // Assuming ID 13 represents another company
                             .build()
             ));
 

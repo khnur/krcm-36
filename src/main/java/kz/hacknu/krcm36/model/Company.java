@@ -2,9 +2,10 @@ package kz.hacknu.krcm36.model;
 
 import jakarta.persistence.*;
 import kz.hacknu.krcm36.util.Category;
-import lombok.*;
-
-import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "companies")
@@ -23,12 +24,4 @@ public class Company {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Category category;
-
-    @OneToMany(
-            mappedBy = "company",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    @ToString.Exclude
-    private List<CashBack> cashBacks;
 }

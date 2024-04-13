@@ -1,9 +1,10 @@
 package kz.hacknu.krcm36.model;
 
 import jakarta.persistence.*;
-import lombok.*;
-
-import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "banks")
@@ -18,20 +19,4 @@ public class Bank {
 
     @Column(nullable = false)
     private String name;
-
-    @OneToMany(
-            mappedBy = "bank",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    @ToString.Exclude
-    private List<BankCard> bankCards;
-
-    @OneToMany(
-            mappedBy = "bank",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    @ToString.Exclude
-    private List<CashBack> cashBacks;
 }

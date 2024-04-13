@@ -34,11 +34,4 @@ public class User {
 
     @Column(length = 20)
     private String phone;
-
-    @OneToMany(
-            mappedBy = "user",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    private List<BankCard> bankCards;
 }

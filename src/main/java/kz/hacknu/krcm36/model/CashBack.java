@@ -22,12 +22,12 @@ public class CashBack {
 
     @ManyToOne
     @JoinColumn(
-            name = "bank_id",
+            name = "bank_card_id",
             referencedColumnName = "id",
-            foreignKey = @ForeignKey(name = "bank_cash_back_fk"),
+            foreignKey = @ForeignKey(name = "bank_card_cash_back_fk"),
             nullable = false
     )
-    private Bank bank;
+    private BankCard bankCard;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)

@@ -36,7 +36,7 @@ public class BankCard {
     @Column(name = "card_number", nullable = false)
     private String cardNumber;
 
-    @Column(name = "expity_date", nullable = false)
+    @Column(name = "expiry_date")
     private LocalDate expiryDate;
 
     @ManyToOne

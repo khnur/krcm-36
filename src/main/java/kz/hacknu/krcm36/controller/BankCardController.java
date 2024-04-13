@@ -4,9 +4,7 @@ import kz.hacknu.krcm36.dto.BankCardDto;
 import kz.hacknu.krcm36.service.BankCardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,5 +17,10 @@ public class BankCardController {
     @GetMapping
     public ResponseEntity<List<BankCardDto>> getAllBankCards() {
         return ResponseEntity.ok(bankCardService.getBankCards());
+    }
+
+    @PostMapping("/save")
+    public ResponseEntity<BankCardDto> saveBankCard(@RequestBody BankCardDto bankCardDto) {
+        return ResponseEntity.ok(bankCardService.save(bankCardDto));
     }
 }

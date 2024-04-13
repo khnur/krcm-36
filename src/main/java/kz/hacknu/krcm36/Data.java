@@ -7,8 +7,8 @@ import kz.hacknu.krcm36.util.Category;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -17,8 +17,7 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 public class Data {
-    private final RestTemplate restTemplate;
-
+    @Primary
     @Bean
     CommandLineRunner runner(
             BankRepository bankRepository,

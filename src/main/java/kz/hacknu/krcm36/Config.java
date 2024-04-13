@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.DefaultUriBuilderFactory;
@@ -37,6 +38,7 @@ public class Config {
     @Value("aaaaaa")
     private String url;
 
+    @Primary
     @Bean
     public RestTemplate webScraper() {
 //        HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();

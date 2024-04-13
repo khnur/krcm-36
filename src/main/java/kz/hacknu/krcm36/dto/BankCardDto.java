@@ -3,26 +3,25 @@ package kz.hacknu.krcm36.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotNull;
 import kz.hacknu.krcm36.util.CardType;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
-public abstract class BankCardDto {
-    @JsonProperty
-    private Integer id;
-    @JsonProperty
-    private CardType type;
-    @JsonProperty("card_number")
-    private String cardNumber;
-    @JsonProperty("expiry_date")
-    private LocalDate expiryDate;
-
-    @EqualsAndHashCode(callSuper = true)
+public class BankCardDto {
     @Data
     @NoArgsConstructor
     @AllArgsConstructor
     @Builder
-    public static class Request extends BankCardDto {
+    public static class Request {
+        private Integer id;
+        private CardType type;
+        @JsonProperty("card_number")
+        private String cardNumber;
+        @JsonProperty("expiry_date")
+        private LocalDate expiryDate;
         @NotNull
         @JsonProperty(value = "bank_id")
         private Integer bankId;
@@ -31,12 +30,17 @@ public abstract class BankCardDto {
         private Integer userId;
     }
 
-    @EqualsAndHashCode(callSuper = true)
     @Data
     @NoArgsConstructor
     @AllArgsConstructor
     @Builder
-    public static class Response extends BankCardDto {
+    public static class Response {
+        private Integer id;
+        private CardType type;
+        @JsonProperty("card_number")
+        private String cardNumber;
+        @JsonProperty("expiry_date")
+        private LocalDate expiryDate;
         private BankDto bank;
         private UserDto user;
     }

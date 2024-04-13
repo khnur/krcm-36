@@ -1,7 +1,7 @@
 package kz.hacknu.krcm36.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import kz.hacknu.krcm36.util.CashBackCategory;
+import kz.hacknu.krcm36.util.Category;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 public class CashBackDto {
     private Integer id;
     private BankDto bank;
-    private CashBackCategory category;
+    private Category category;
     private Float percent;
     private String condition;
     @JsonProperty("expiry_date")

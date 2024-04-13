@@ -16,7 +16,6 @@ public class BankCardDto {
     @AllArgsConstructor
     @Builder
     public static class Request {
-        private Integer id;
         private CardType type;
         @JsonProperty("card_number")
         private String cardNumber;

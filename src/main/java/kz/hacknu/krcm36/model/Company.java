@@ -20,6 +20,12 @@ public class Company {
     @Column(nullable = false)
     private String name;
 
+    @Column(name = "photo_url")
+    private String photoUrl;
+
+    @Column(name = "logo_url")
+    private String logoUrl;
+
     @ManyToOne
     @JoinColumn(
             name = "category_id",

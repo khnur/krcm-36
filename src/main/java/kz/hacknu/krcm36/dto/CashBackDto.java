@@ -14,7 +14,6 @@ public class CashBackDto {
     @AllArgsConstructor
     @Builder
     public static class Request {
-        private Integer id;
         private Float percent;
         private String condition;
         @JsonProperty("expiry_date")

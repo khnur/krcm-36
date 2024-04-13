@@ -1,8 +1,8 @@
 package kz.hacknu.krcm36.adapter;
 
 import kz.hacknu.krcm36.domain.BearerToken;
-import kz.hacknu.krcm36.domain.CompanyDetail;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -17,7 +17,8 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class TokenFactory {
     private final RestTemplate tokenRestTemplate = new RestTemplate();
-    private final RestTemplate scrapeRestTemplate = new RestTemplate();
+    @Value("${token_url}")
+    private String url;
 
     public String createToken() {
         MultiValueMap<String, String> formData = new LinkedMultiValueMap<>();
@@ -31,15 +32,10 @@ public class TokenFactory {
 
         HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<>(formData, headers);
 
-        BearerToken bearerToken = tokenRestTemplate.postForObject("https://oauth.homebank.kz/oauth2/token", requestEntity, BearerToken.class);
+        BearerToken bearerToken = tokenRestTemplate.postForObject(url, requestEntity, BearerToken.class);
 
         return Optional.ofNullable(bearerToken)
                 .map(BearerToken::getAccessToken)
                 .orElseThrow();
-    }
-
-    public CompanyDetail getCompanyDetail(String token) {
-
-        return null;
     }
 }

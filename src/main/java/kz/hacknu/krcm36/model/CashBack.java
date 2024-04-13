@@ -39,7 +39,7 @@ public class CashBack {
     @Column(nullable = false)
     private String condition;
 
-    @Column(name = "expiry_date", nullable = false)
+    @Column(name = "expiry_date")
     private LocalDate expiryDate;
 
     @Column(nullable = false)

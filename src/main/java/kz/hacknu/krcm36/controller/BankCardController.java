@@ -15,12 +15,12 @@ public class BankCardController {
     private final BankCardService bankCardService;
 
     @GetMapping
-    public ResponseEntity<List<BankCardDto>> getAllBankCards() {
+    public ResponseEntity<List<BankCardDto.Response>> getAllBankCards() {
         return ResponseEntity.ok(bankCardService.getBankCards());
     }
 
     @PostMapping("/save")
-    public ResponseEntity<BankCardDto> saveBankCard(@RequestBody BankCardDto bankCardDto) {
+    public ResponseEntity<BankCardDto.Response> saveBankCard(@RequestBody BankCardDto.Request bankCardDto) {
         return ResponseEntity.ok(bankCardService.save(bankCardDto));
     }
 }

@@ -23,21 +23,21 @@ public class BankCardService {
     private final BankRepository bankRepository;
     private final ModelMapper modelMapper = Config.getModelMapper();
 
-    public List<BankCardDto> getBankCardsByUserId(Integer userId) {
+    public List<BankCardDto.Response> getBankCardsByUserId(Integer userId) {
         User user = userRepository.findById(userId)
                 .orElseThrow();
         return bankCardRepository.findBankCardsByUser(user).stream()
-                .map(bankCard -> modelMapper.map(bankCard, BankCardDto.class))
+                .map(bankCard -> modelMapper.map(bankCard, BankCardDto.Response.class))
                 .toList();
     }
 
-    public List<BankCardDto> getBankCards() {
+    public List<BankCardDto.Response> getBankCards() {
         return bankCardRepository.findAll().stream()
-                .map(bankCard -> modelMapper.map(bankCard, BankCardDto.class))
+                .map(bankCard -> modelMapper.map(bankCard, BankCardDto.Response.class))
                 .toList();
     }
 
-    public BankCardDto save(@Valid BankCardDto bankCardDto) {
+    public BankCardDto.Response save(@Valid BankCardDto.Request bankCardDto) {
         BankCard card = modelMapper.map(bankCardDto, BankCard.class);
         Bank bank = bankRepository.findById(bankCardDto.getBankId())
                 .orElseThrow();
@@ -45,6 +45,6 @@ public class BankCardService {
         User user = userRepository.findById(bankCardDto.getUserId())
                 .orElseThrow();
         card.setUser(user);
-        return modelMapper.map(bankCardRepository.save(card), BankCardDto.class);
+        return modelMapper.map(bankCardRepository.save(card), BankCardDto.Response.class);
     }
 }

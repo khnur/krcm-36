@@ -37,7 +37,7 @@ public class CompanyDetailFactory {
 
     public List<ForteDetails> getForteDetails() {
         ResponseEntity<List<ForteDetails>> response = restTemplate.exchange(
-                url + "/scrape_forte?url=https://club.forte.kz/partneroffers",
+                url + "/parse_forte?url=https://club.forte.kz/partneroffers",
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<List<ForteDetails>>() {

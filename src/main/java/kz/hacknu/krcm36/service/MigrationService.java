@@ -8,6 +8,7 @@ import kz.hacknu.krcm36.domain.HalykDetails;
 import kz.hacknu.krcm36.model.*;
 import kz.hacknu.krcm36.repository.*;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class MigrationService {
     private final TokenFactory tokenFactory;
     private final CompanyDetailFactory companyDetailFactory;
@@ -26,12 +28,16 @@ public class MigrationService {
     private final CashBackRepository cashBackRepository;
     private final CompanyRepository companyRepository;
 
-    @Scheduled(fixedRate = 60000, initialDelay = 10000)
+    @Scheduled(fixedRate = 180000, initialDelay = 10000)
     @Transactional
     public void migrate() {
         cashBackRepository.deleteAll();
+
         this.halykBankMigrateCashBack();
-//        this.forteBankMigrateCashBack();
+        log.info("Migrated Halyk Bank CashBacks.");
+
+        this.forteBankMigrateCashBack();
+        log.info("Migrated Forte Bank CashBacks.");
     }
 
     private void halykBankMigrateCashBack() {

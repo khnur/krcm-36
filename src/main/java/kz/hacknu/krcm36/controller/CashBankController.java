@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,5 +21,10 @@ public class CashBankController {
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<CashBackDto.Response>> findAll() {
         return ResponseEntity.ok(cashBackService.getAllCashBacks());
+    }
+
+    @PostMapping("/save")
+    public ResponseEntity<CashBackDto.Response> findById(CashBackDto.Request request) {
+        return ResponseEntity.ok(cashBackService.create(request));
     }
 }

@@ -2,10 +2,7 @@ package kz.hacknu.krcm36.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import kz.hacknu.krcm36.model.Company;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -20,8 +17,10 @@ public class CashBackDto {
         @JsonProperty("expiry_date")
         private LocalDateTime expiryDate;
         private String restriction;
+        @NonNull
         @JsonProperty("bank_card_id")
         private Integer bankCardId;
+        @NonNull
         @JsonProperty("company_id")
         private Integer companyId;
     }

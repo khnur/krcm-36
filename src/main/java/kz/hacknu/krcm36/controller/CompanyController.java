@@ -22,6 +22,11 @@ public class CompanyController {
         return ResponseEntity.ok(companyService.getAllCompanies());
     }
 
+    @GetMapping("{id}")
+    public ResponseEntity<CompanyDto.Response> getById(@PathVariable Integer id) {
+        return ResponseEntity.ok(companyService.getById(id));
+    }
+
     @GetMapping("/{id}/cashbacks")
     public ResponseEntity<List<CashBackDto.Response>> getCashbacksByCompanyId(@PathVariable Integer id) {
         return ResponseEntity.ok(cashBackService.findCashBacksByCompanyId(id));

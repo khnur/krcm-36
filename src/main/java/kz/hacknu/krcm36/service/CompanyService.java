@@ -6,6 +6,7 @@ import kz.hacknu.krcm36.model.Category;
 import kz.hacknu.krcm36.model.Company;
 import kz.hacknu.krcm36.repository.CategoryRepository;
 import kz.hacknu.krcm36.repository.CompanyRepository;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.modelmapper.ModelMapper;
@@ -25,6 +26,12 @@ public class CompanyService {
         return companyRepository.findAll().stream()
                 .map(company -> modelMapper.map(company, CompanyDto.Response.class))
                 .toList();
+    }
+
+    public CompanyDto.Response getById(@NonNull Integer id) {
+        Company company = companyRepository.findById(id)
+                .orElseThrow();
+        return modelMapper.map(company, CompanyDto.Response.class);
     }
 
     public List<CompanyDto.Response> getCompaniesByName(String name) {

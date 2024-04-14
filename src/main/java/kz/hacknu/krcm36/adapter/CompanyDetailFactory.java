@@ -1,6 +1,7 @@
 package kz.hacknu.krcm36.adapter;
 
-import kz.hacknu.krcm36.domain.CompanyDetail;
+import kz.hacknu.krcm36.domain.ForteDetails;
+import kz.hacknu.krcm36.domain.HalykDetails;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
@@ -18,12 +19,12 @@ public class CompanyDetailFactory {
     @Value("${company_detail_url}")
     private String url;
 
-    public List<CompanyDetail> getCompanyDetail(@NonNull String token) {
-        ResponseEntity<List<CompanyDetail>> response = restTemplate.exchange(
-                url + "?bearer_token={token}",
+    public List<HalykDetails> getHalykDetails(@NonNull String token) {
+        ResponseEntity<List<HalykDetails>> response = restTemplate.exchange(
+                url + "/parse_halyk?bearer_token={token}",
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<List<CompanyDetail>>() {
+                new ParameterizedTypeReference<List<HalykDetails>>() {
                 },
                 token
         );
@@ -33,4 +34,20 @@ public class CompanyDetailFactory {
                 .map(ResponseEntity::getBody)
                 .orElseThrow();
     }
+
+    public List<ForteDetails> getForteDetails() {
+        ResponseEntity<List<ForteDetails>> response = restTemplate.exchange(
+                url + "/scrape_forte?url=https://club.forte.kz/partneroffers",
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<ForteDetails>>() {
+                }
+        );
+
+        return Optional.of(response)
+                .filter(res -> res.getStatusCode().is2xxSuccessful())
+                .map(ResponseEntity::getBody)
+                .orElseThrow();
+    }
+
 }

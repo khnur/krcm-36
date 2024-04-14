@@ -21,9 +21,9 @@ public class CompanyService {
     private final CategoryRepository categoryRepository;
     private final ModelMapper modelMapper = Config.getModelMapper();
 
-    public List<CompanyDto> getAllCompanies() {
+    public List<CompanyDto.Response> getAllCompanies() {
         return companyRepository.findAll().stream()
-                .map(company -> modelMapper.map(company, CompanyDto.class))
+                .map(company -> modelMapper.map(company, CompanyDto.Response.class))
                 .toList();
     }
 

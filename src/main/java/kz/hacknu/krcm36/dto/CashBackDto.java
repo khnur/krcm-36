@@ -1,6 +1,7 @@
 package kz.hacknu.krcm36.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import kz.hacknu.krcm36.model.Company;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -38,7 +39,7 @@ public class CashBackDto {
         private String restriction;
         @JsonProperty("bank_card")
         private BankCardDto.Response bankCard;
-        private CompanyDto company;
+        private Company company;
     }
 }
 

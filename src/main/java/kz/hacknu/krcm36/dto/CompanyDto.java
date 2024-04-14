@@ -1,6 +1,7 @@
 package kz.hacknu.krcm36.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import kz.hacknu.krcm36.model.Category;
 import lombok.*;
 
 public class CompanyDto {
@@ -30,6 +31,6 @@ public class CompanyDto {
         private String photoUrl;
         @JsonProperty("logo_url")
         private String logoUrl;
-        private CategoryDto category;
+        private Category category;
     }
 }

@@ -2,6 +2,8 @@ package kz.hacknu.krcm36.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotNull;
+import kz.hacknu.krcm36.model.Bank;
+import kz.hacknu.krcm36.model.User;
 import kz.hacknu.krcm36.util.CardType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -40,7 +42,7 @@ public class BankCardDto {
         private String cardNumber;
         @JsonProperty("expiry_date")
         private LocalDate expiryDate;
-        private BankDto bank;
-        private UserDto user;
+        private Bank bank;
+        private User user;
     }
 }

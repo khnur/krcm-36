@@ -18,7 +18,7 @@ public class CompanyController {
     private final CashBackService cashBackService;
 
     @GetMapping
-    public ResponseEntity<List<CompanyDto>> getAllCompanies() {
+    public ResponseEntity<List<CompanyDto.Response>> getAllCompanies() {
         return ResponseEntity.ok(companyService.getAllCompanies());
     }
 

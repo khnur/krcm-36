@@ -16,6 +16,8 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class MigrationService {
+    private final Object lock = new Object();
+
     private final TokenFactory tokenFactory;
     private final CompanyDetailFactory companyDetailFactory;
 
@@ -27,7 +29,22 @@ public class MigrationService {
 
     @Scheduled(fixedRate = 60000, initialDelay = 10000)
     @Transactional
-    public void halykBankMigrate() {
+    public void halykMigrate() {
+        synchronized (lock) {
+            this.halykBankMigrateCashBack();
+        }
+    }
+
+    @Scheduled(fixedRate = 60000, initialDelay = 20000)
+    @Transactional
+    public void forteMigrate() {
+        synchronized (lock) {
+            this.forteBankMigrateCashBack();
+        }
+    }
+
+
+    private void halykBankMigrateCashBack() {
         cashBackRepository.deleteAll();
         String token = tokenFactory.createToken();
         List<CompanyDetail> companyDetails = companyDetailFactory.getCompanyDetail(token);
@@ -73,5 +90,9 @@ public class MigrationService {
                         cashBackRepository.save(cashBack);
                     });
                 });
+    }
+
+    private void forteBankMigrateCashBack() {
+
     }
 }

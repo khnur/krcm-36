@@ -34,7 +34,7 @@ import java.time.Duration;
                 )
         )
 )
-@EnableScheduling
+//@EnableScheduling
 @Configuration
 public class Config {
     public static ModelMapper getModelMapper() {

@@ -9,7 +9,7 @@ public class CompanyDto {
     @NoArgsConstructor
     @AllArgsConstructor
     @Builder
-    public static class Request {
+    public static class CompanyRequest {
         private String name;
         @JsonProperty("photo_url")
         private String photoUrl;
@@ -24,7 +24,7 @@ public class CompanyDto {
     @NoArgsConstructor
     @AllArgsConstructor
     @Builder
-    public static class Response {
+    public static class CompanyResponse {
         private Integer id;
         private String name;
         @JsonProperty("photo_url")

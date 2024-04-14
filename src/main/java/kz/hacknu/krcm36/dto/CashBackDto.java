@@ -11,7 +11,7 @@ public class CashBackDto {
     @NoArgsConstructor
     @AllArgsConstructor
     @Builder
-    public static class Request {
+    public static class CashBackRequest {
         private Float percent;
         private String condition;
         @JsonProperty("expiry_date")
@@ -29,7 +29,7 @@ public class CashBackDto {
     @NoArgsConstructor
     @AllArgsConstructor
     @Builder
-    public static class Response {
+    public static class CashBackResponse {
         private Integer id;
         private Float percent;
         private String condition;
@@ -37,7 +37,7 @@ public class CashBackDto {
         private LocalDateTime expiryDate;
         private String restriction;
         @JsonProperty("bank_card")
-        private BankCardDto.Response bankCard;
+        private BankCardDto.BankCardResponse bankCard;
         private Company company;
     }
 }

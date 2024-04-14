@@ -18,7 +18,7 @@ public class UserController {
     private final BankCardService bankCardService;
 
     @GetMapping("/{id}/cards")
-    public ResponseEntity<List<BankCardDto.Response>> getAllUsers(@PathVariable int id) {
+    public ResponseEntity<List<BankCardDto.BankCardResponse>> getAllUsers(@PathVariable int id) {
         return ResponseEntity.ok(bankCardService.getBankCardsByUserId(id));
     }
 }

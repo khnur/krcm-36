@@ -17,7 +17,7 @@ public class BankCardDto {
     @NoArgsConstructor
     @AllArgsConstructor
     @Builder
-    public static class Request {
+    public static class BankCardRequest {
         private CardType type;
         @JsonProperty("card_number")
         private String cardNumber;
@@ -35,7 +35,7 @@ public class BankCardDto {
     @NoArgsConstructor
     @AllArgsConstructor
     @Builder
-    public static class Response {
+    public static class BankCardResponse {
         private Integer id;
         private CardType type;
         @JsonProperty("card_number")

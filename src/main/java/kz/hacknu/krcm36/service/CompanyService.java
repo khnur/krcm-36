@@ -22,19 +22,19 @@ public class CompanyService {
     private final CategoryRepository categoryRepository;
     private final ModelMapper modelMapper = Config.getModelMapper();
 
-    public List<CompanyDto.Response> getAllCompanies() {
+    public List<CompanyDto.CompanyResponse> getAllCompanies() {
         return companyRepository.findAll().stream()
-                .map(company -> modelMapper.map(company, CompanyDto.Response.class))
+                .map(company -> modelMapper.map(company, CompanyDto.CompanyResponse.class))
                 .toList();
     }
 
-    public CompanyDto.Response getById(@NonNull Integer id) {
+    public CompanyDto.CompanyResponse getById(@NonNull Integer id) {
         Company company = companyRepository.findById(id)
                 .orElseThrow();
-        return modelMapper.map(company, CompanyDto.Response.class);
+        return modelMapper.map(company, CompanyDto.CompanyResponse.class);
     }
 
-    public List<CompanyDto.Response> getCompaniesByName(String name) {
+    public List<CompanyDto.CompanyResponse> getCompaniesByName(String name) {
         return companyRepository.findAll().stream()
                 .filter(company -> Optional.ofNullable(company)
                         .map(Company::getName)
@@ -44,15 +44,15 @@ public class CompanyService {
                                 .map(String::toLowerCase)
                                 .orElse("")))
                         .orElse(false))
-                .map(company -> modelMapper.map(company, CompanyDto.Response.class))
+                .map(company -> modelMapper.map(company, CompanyDto.CompanyResponse.class))
                 .toList();
     }
 
-    public CompanyDto.Response createCompany(CompanyDto.Request companyDto) {
+    public CompanyDto.CompanyResponse createCompany(CompanyDto.CompanyRequest companyDto) {
         Company company = modelMapper.map(companyDto, Company.class);
         Category category = categoryRepository.findById(companyDto.getCategoryId())
                 .orElseThrow();
         company.setCategory(category);
-        return modelMapper.map(companyRepository.save(company), CompanyDto.Response.class);
+        return modelMapper.map(companyRepository.save(company), CompanyDto.CompanyResponse.class);
     }
 }

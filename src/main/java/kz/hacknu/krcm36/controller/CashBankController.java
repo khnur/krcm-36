@@ -19,12 +19,12 @@ public class CashBankController {
     private final CashBackService cashBackService;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<CashBackDto.Response>> findAll() {
+    public ResponseEntity<List<CashBackDto.CashBackResponse>> findAll() {
         return ResponseEntity.ok(cashBackService.getAllCashBacks());
     }
 
     @PostMapping("/save")
-    public ResponseEntity<CashBackDto.Response> findById(CashBackDto.Request request) {
+    public ResponseEntity<CashBackDto.CashBackResponse> create(CashBackDto.CashBackRequest request) {
         return ResponseEntity.ok(cashBackService.create(request));
     }
 }

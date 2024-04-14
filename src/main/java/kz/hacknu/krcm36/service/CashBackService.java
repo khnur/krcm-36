@@ -23,21 +23,21 @@ public class CashBackService {
     private final BankCardRepository bankCardRepository;
     private final CompanyRepository companyRepository;
 
-    public List<CashBackDto.Response> getAllCashBacks() {
+    public List<CashBackDto.CashBackResponse> getAllCashBacks() {
         return cashBackRepository.findAll().stream()
-                .map(cashBack -> modelMapper.map(cashBack, CashBackDto.Response.class))
+                .map(cashBack -> modelMapper.map(cashBack, CashBackDto.CashBackResponse.class))
                 .toList();
     }
 
-    public List<CashBackDto.Response> findCashBacksByCompanyId(@NonNull Integer companyId) {
+    public List<CashBackDto.CashBackResponse> findCashBacksByCompanyId(@NonNull Integer companyId) {
         Company company = companyRepository.findById(companyId)
                 .orElseThrow();
         return cashBackRepository.findCashBackByCompany(company).stream()
-                .map(cashBack -> modelMapper.map(cashBack, CashBackDto.Response.class))
+                .map(cashBack -> modelMapper.map(cashBack, CashBackDto.CashBackResponse.class))
                 .toList();
     }
 
-    public CashBackDto.Response create(CashBackDto.Request request) {
+    public CashBackDto.CashBackResponse create(CashBackDto.CashBackRequest request) {
         CashBack cashBack = modelMapper.map(request, CashBack.class);
         BankCard card = bankCardRepository.findById(request.getBankCardId())
                 .orElseThrow();
@@ -45,6 +45,6 @@ public class CashBackService {
         Company company = companyRepository.findById(request.getCompanyId())
                 .orElseThrow();
         cashBack.setCompany(company);
-        return modelMapper.map(cashBack, CashBackDto.Response.class);
+        return modelMapper.map(cashBack, CashBackDto.CashBackResponse.class);
     }
 }

@@ -27,7 +27,7 @@ public class CompanyService {
                 .toList();
     }
 
-    public List<CompanyDto> getCompaniesByName(String name) {
+    public List<CompanyDto.Response> getCompaniesByName(String name) {
         return companyRepository.findAll().stream()
                 .filter(company -> Optional.ofNullable(company)
                         .map(Company::getName)
@@ -37,7 +37,7 @@ public class CompanyService {
                                 .map(String::toLowerCase)
                                 .orElse("")))
                         .orElse(false))
-                .map(company -> modelMapper.map(company, CompanyDto.class))
+                .map(company -> modelMapper.map(company, CompanyDto.Response.class))
                 .toList();
     }
 

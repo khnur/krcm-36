@@ -28,7 +28,7 @@ public class CompanyController {
     }
 
     @GetMapping("/{name}")
-    public ResponseEntity<List<CompanyDto>> getCompaniesByName(@PathVariable String name) {
+    public ResponseEntity<List<CompanyDto.Response>> getCompaniesByName(@PathVariable String name) {
         return ResponseEntity.ok(companyService.getCompaniesByName(name));
     }
 

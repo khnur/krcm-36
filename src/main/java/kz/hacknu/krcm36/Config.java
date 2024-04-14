@@ -12,6 +12,7 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.DefaultUriBuilderFactory;
@@ -33,33 +34,9 @@ import java.time.Duration;
                 )
         )
 )
+@EnableScheduling
 @Configuration
 public class Config {
-    @Value("aaaaaa")
-    private String url;
-
-    @Primary
-    @Bean
-    public RestTemplate webScraper() {
-//        HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();
-//        factory.setReadTimeout(getReadTimeout() * 1000);
-//        factory.setConnectTimeout(getConnectTimeout() * 1000);
-//        factory.setConnectionRequestTimeout(getConnectTimeout() * 1000);
-//        factory.setHttpClient(HttpClientBuilder
-//                .create()
-//                .disableCookieManagement()      // disabled restTemplate to store cookies
-//                .setMaxConnTotal(100)
-//                .setMaxConnPerRoute(50)
-//                .build());
-//
-//        BufferingClientHttpRequestFactory bufferingClientHttpRequestFactory = new BufferingClientHttpRequestFactory(factory);
-
-        return new RestTemplateBuilder()
-                .uriTemplateHandler(new DefaultUriBuilderFactory(url))
-                .setReadTimeout(Duration.ofMinutes(6))
-                .build();
-    }
-
     public static ModelMapper getModelMapper() {
         ModelMapper mapper = new ModelMapper();
         mapper.getConfiguration()

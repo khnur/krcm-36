@@ -1,5 +1,6 @@
 package kz.hacknu.krcm36.repository;
 
+import kz.hacknu.krcm36.model.Bank;
 import kz.hacknu.krcm36.model.BankCard;
 import kz.hacknu.krcm36.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,4 +11,5 @@ import java.util.List;
 @Repository
 public interface BankCardRepository extends JpaRepository<BankCard, Integer> {
     List<BankCard> findBankCardsByUser(User user);
+    List<BankCard> findBankCardsByBank(Bank bank);
 }

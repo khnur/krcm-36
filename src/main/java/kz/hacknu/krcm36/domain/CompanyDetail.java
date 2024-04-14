@@ -15,5 +15,5 @@ public class CompanyDetail {
     @JsonProperty("category_name")
     private String categoryName;
     private String description;
-    private String bonus;
+    private Float bonus;
 }

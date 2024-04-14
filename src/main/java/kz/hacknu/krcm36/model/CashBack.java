@@ -37,7 +37,7 @@ public class CashBack {
     @Column(name = "expiry_date")
     private LocalDate expiryDate;
 
-    @Column(nullable = false)
+    @Column
     private String restriction;
 
     @ManyToOne

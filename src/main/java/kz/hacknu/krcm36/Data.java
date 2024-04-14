@@ -88,6 +88,9 @@ public class Data {
                             .build(),
                     Bank.builder()
                             .name("Forte")
+                            .build(),
+                    Bank.builder()
+                            .name("Halyk")
                             .build()
             ));
 
@@ -95,22 +98,29 @@ public class Data {
                     BankCard.builder()
                             .bank(bankRepository.getReferenceById(1))
                             .type(CardType.MASTERCARD)
-                            .cardNumber("123")
+                            .cardNumber("4444-4444-4444-4444")
                             .expiryDate(LocalDate.now())
                             .user(userRepository.getReferenceById(1))
                             .build(),
                     BankCard.builder()
-                            .bank(bankRepository.getReferenceById(2))
+                            .bank(bankRepository.getReferenceById(3))
                             .type(CardType.VISA)
-                            .cardNumber("321")
+                            .cardNumber("5555-5555-5555-5555")
                             .expiryDate(LocalDate.now())
                             .user(userRepository.getReferenceById(1))
                             .build(),
                     BankCard.builder()
-                            .bank(bankRepository.getReferenceById(2))
+                            .bank(bankRepository.getReferenceById(3))
                             .type(CardType.MASTERCARD)
-                            .cardNumber("444")
-                            .expiryDate(LocalDate.now())
+                            .cardNumber("6666-6666-6666-666")
+                            .expiryDate(LocalDate.now().plusMonths(5))
+                            .user(userRepository.getReferenceById(2))
+                            .build(),
+                    BankCard.builder()
+                            .bank(bankRepository.getReferenceById(3))
+                            .type(CardType.MASTERCARD)
+                            .cardNumber("6666-6666-6666-666")
+                            .expiryDate(LocalDate.now().plusYears(2))
                             .user(userRepository.getReferenceById(2))
                             .build()
             ));

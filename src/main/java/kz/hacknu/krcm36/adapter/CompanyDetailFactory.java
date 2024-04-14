@@ -3,8 +3,6 @@ package kz.hacknu.krcm36.adapter;
 import kz.hacknu.krcm36.domain.CompanyDetail;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Bean;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -19,14 +17,6 @@ public class CompanyDetailFactory {
     private final RestTemplate restTemplate = new RestTemplate();
     @Value("${company_detail_url}")
     private String url;
-
-//    @Bean
-    CommandLineRunner init() {
-        return args -> {
-            List<CompanyDetail> wgehpqhhmokj9UYS14OH9A = this.getCompanyDetail("WGEHPQHHMOKJ9UYS14OH9A");
-            System.out.println(wgehpqhhmokj9UYS14OH9A);
-        };
-    }
 
     public List<CompanyDetail> getCompanyDetail(@NonNull String token) {
         ResponseEntity<List<CompanyDetail>> response = restTemplate.exchange(

@@ -1,7 +1,7 @@
 package kz.hacknu.krcm36.controller;
 
-import kz.hacknu.krcm36.model.CashBack;
-import kz.hacknu.krcm36.repository.CashBackRepository;
+import kz.hacknu.krcm36.dto.CashBackDto;
+import kz.hacknu.krcm36.service.CashBackService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -15,10 +15,10 @@ import java.util.List;
 @RequestMapping("/cashback")
 @RequiredArgsConstructor
 public class CashBankController {
-    private final CashBackRepository cashBackRepository;
+    private final CashBackService cashBackService;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<CashBack>> findAll() {
-        return ResponseEntity.ok(cashBackRepository.findAll());
+    public ResponseEntity<List<CashBackDto.Response>> findAll() {
+        return ResponseEntity.ok(cashBackService.getAllCashBacks());
     }
 }

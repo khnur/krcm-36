@@ -19,6 +19,12 @@ public class CashBackService {
     private final CashBackRepository cashBackRepository;
     private final CompanyRepository companyRepository;
 
+    public List<CashBackDto.Response> getAllCashBacks() {
+        return cashBackRepository.findAll().stream()
+                .map(cashBack -> modelMapper.map(cashBack, CashBackDto.Response.class))
+                .toList();
+    }
+
     public List<CashBackDto.Response> findCashBacksByCompanyId(@NonNull Integer companyId) {
         Company company = companyRepository.findById(companyId)
                 .orElseThrow();

@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -34,6 +35,7 @@ public class CashBackService {
                 .orElseThrow();
         return cashBackRepository.findCashBackByCompany(company).stream()
                 .map(cashBack -> modelMapper.map(cashBack, CashBackDto.CashBackResponse.class))
+                .sorted((a, b) -> Float.compare(b.getPercent(), a.getPercent()))
                 .toList();
     }
 
